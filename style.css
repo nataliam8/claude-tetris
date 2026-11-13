@@ -16,10 +16,43 @@ body {
 }
 
 .wrapper {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.game-title {
+  font-size: clamp(36px, 8vw, 56px);
+  font-weight: 900;
+  letter-spacing: 8px;
+  padding-left: 8px;
+  display: flex;
+}
+
+.game-title span {
+  color: var(--c);
+  text-shadow: 0 0 8px var(--c), 0 0 22px var(--c), 0 3px 0 rgba(0, 0, 0, 0.5);
+  animation: glow 3s ease-in-out infinite;
+}
+
+.game-title span:nth-child(2) { animation-delay: 0.3s; }
+.game-title span:nth-child(3) { animation-delay: 0.6s; }
+.game-title span:nth-child(4) { animation-delay: 0.9s; }
+.game-title span:nth-child(5) { animation-delay: 1.2s; }
+.game-title span:nth-child(6) { animation-delay: 1.5s; }
+
+@keyframes glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.35); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-title span { animation: none; }
 }
 
 .game-container {
+  position: relative;
   display: flex;
   gap: 20px;
   align-items: flex-start;
