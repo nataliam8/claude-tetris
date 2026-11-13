@@ -25,6 +25,7 @@ Implementación del clásico **Tetris** en JavaScript vanilla, usando HTML5 Canv
   - [Tecnologías](#tecnologías)
   - [Estructura del proyecto](#estructura-del-proyecto)
   - [Personalización](#personalización)
+  - [Automatizaciones](#automatizaciones)
   - [Licencia](#licencia)
 
 ---
@@ -178,6 +179,26 @@ Algunos parámetros fáciles de tunear en `game.js`:
 | `dropInterval` | Velocidad inicial de caída en ms         | `1000`                |
 
 > Si cambias `COLS`, `ROWS` o `BLOCK`, recuerda ajustar también `width` y `height` del `<canvas id="board">` en `index.html` para que coincida (`COLS × BLOCK` × `ROWS × BLOCK`).
+
+---
+
+## Automatizaciones
+
+El repositorio usa GitHub Actions con Claude (`.github/workflows/`):
+
+| Workflow                  | Cuándo se ejecuta                                       | Qué hace                                                                                         |
+| ------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `claude-issue-triage.yml` | Al crear un issue o editar su título/descripción        | Asigna labels y publica (o actualiza) un único comentario con el diagnóstico general del issue. |
+| `claude.yml`              | Al mencionar `@claude` en issues, PRs o comentarios     | Claude responde o trabaja sobre lo que se le pide.                                               |
+| `claude-code-review.yml`  | Al abrir o actualizar un pull request                   | Revisión automática del código.                                                                  |
+
+Labels que asigna el triage:
+
+- **Tipo**: `bug`, `enhancement`, `documentation`, `question`, `accessibility`, `duplicate`, `invalid`.
+- **Área**: `area:gameplay`, `area:ui`, `area:controles`, `area:rendimiento`.
+- **Prioridad**: `prioridad:alta`, `prioridad:media`, `prioridad:baja`.
+
+Todos los workflows usan el secreto `CLAUDE_CODE_OAUTH_TOKEN` del repositorio.
 
 ---
 
