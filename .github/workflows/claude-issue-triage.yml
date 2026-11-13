@@ -85,6 +85,12 @@ jobs:
                  controles sincronizados en `game.js`, `index.html` y `README.md`, etc.)
                - Cómo verificar
                - Preguntas abiertas (solo si el issue es ambiguo o falta información)
+               El diagnóstico se publica tal cual como comentario en GitHub, así que debe estar en
+               Markdown compatible con GitHub (GitHub Flavored Markdown) para que se renderice bien:
+               encabezados `###`, listas con `-` o `1.`, código en línea con comillas invertidas,
+               bloques de código con triple comilla invertida y lenguaje (p. ej. ```js), y una línea
+               en blanco entre párrafos, encabezados y listas. No uses HTML ni envuelvas todo el
+               diagnóstico en un bloque de código.
                No modifiques ningún archivo del repositorio.
 
             3. Escribir el resultado con la herramienta Write en el archivo
