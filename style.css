@@ -278,3 +278,57 @@ kbd {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
+
+/* ---- Skins ---- */
+.skin-picker {
+  position: fixed;
+  top: 56px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--canvas-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 6px 4px 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.skin-picker select {
+  background: var(--kbd-bg);
+  color: var(--text);
+  border: 1px solid var(--kbd-border);
+  border-radius: 999px;
+  padding: 2px 8px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.skin-picker select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Neon fuerza fondo negro en los canvas, sea cual sea el tema */
+[data-skin="neon"] #board,
+[data-skin="neon"] #next-canvas {
+  background: #000;
+  border-color: rgba(0, 240, 255, 0.2);
+}
+
+[data-skin="neon"] #board {
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.25);
+}
+
+/* Pastel: fondo suave que depende del tema */
+[data-skin="pastel"] #board,
+[data-skin="pastel"] #next-canvas {
+  background: #1f1c27;
+}
+
+[data-theme="light"][data-skin="pastel"] #board,
+[data-theme="light"][data-skin="pastel"] #next-canvas {
+  background: #fdf8fb;
+}
