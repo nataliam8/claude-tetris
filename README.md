@@ -44,6 +44,13 @@ Es una versión jugable del Tetris clásico con todas las mecánicas que esperar
 - **Sistema de puntuación** clásico de Tetris (100 / 300 / 500 / 800 multiplicado por nivel).
 - **Niveles** que aumentan cada 10 líneas y aceleran la caída.
 - **Pausa** y **Game Over** con opción de reinicio.
+- **Skins visuales** seleccionables desde el selector _Skin_ (arriba a la derecha), sin recargar la página:
+  - **Retro**: bloques cuadrados y colores planos (el aspecto clásico).
+  - **Neon**: fondo negro y bloques con brillo (_glow_), incluso con el tema claro.
+  - **Pastel**: colores suaves y esquinas redondeadas.
+  - **Pixel art**: textura de píxeles con luz arriba-izquierda y sombra abajo-derecha.
+
+  La skin elegida se guarda en `localStorage` (clave `tetris-skin`) y convive con el modo claro/oscuro.
 
 ---
 
@@ -118,7 +125,8 @@ Contiene toda la lógica del juego. A grandes rasgos:
 - **Limpieza de líneas** (`clearLines`): recorre el tablero de abajo hacia arriba; cada fila completa se elimina y se inserta una vacía en la cima.
 - **Puntuación**: usa la tabla clásica `[0, 100, 300, 500, 800]` multiplicada por el nivel actual; el hard drop suma 2 puntos por celda recorrida y el soft drop 1 punto por fila.
 - **Nivel y velocidad**: el nivel sube cada 10 líneas; la velocidad de caída se calcula como `max(100, 1000 − (level − 1) × 90)` milisegundos.
-- **Ghost piece** (`ghostY`): proyecta la posición final de la pieza actual hacia abajo y la dibuja con `globalAlpha = 0.2`.
+- **Ghost piece** (`ghostY`): proyecta la posición final de la pieza actual hacia abajo y la dibuja semitransparente (`ghostAlpha`).
+- **Skins** (`SKINS`, `applySkin`): `drawBlock` delega en la función de dibujo de la skin activa, que aporta su propia paleta y su color de cuadrícula.
 
 ### Flujo del juego
 
@@ -175,7 +183,7 @@ Algunos parámetros fáciles de tunear en `game.js`:
 | `COLS`         | Columnas del tablero                     | `10`                  |
 | `ROWS`         | Filas del tablero                        | `20`                  |
 | `BLOCK`        | Tamaño en píxeles de cada celda          | `30`                  |
-| `COLORS`       | Paleta de colores por tipo de pieza      | 8 colores             |
+| `SKINS`        | Paleta (`colors`), cuadrícula y forma de dibujar los bloques de cada skin | 4 skins (8 colores c/u) |
 | `LINE_SCORES`  | Puntos por 1, 2, 3 o 4 líneas eliminadas | `[0,100,300,500,800]` |
 | `dropInterval` | Velocidad inicial de caída en ms         | `1000`                |
 
